@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_width="fill_parent">
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="50dip"
+        android:layout_height="50dip" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@+id/item_icon"
+        android:singleLine="true"
+        android:text="@+id/item_name"
+        android:textColor="@color/colorTextBasic"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/item_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_name"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/item_icon"
+        android:text="@+id/item_size"
+        android:textColor="@color/colorTextBasic" />
+
+    <TextView
+        android:id="@+id/item_date_creation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/item_name"
+        android:layout_marginLeft="5dip"
+        android:text="@+id/item_date_creation"
+        android:textColor="@color/colorTextBasic" />
+
+</RelativeLayout>

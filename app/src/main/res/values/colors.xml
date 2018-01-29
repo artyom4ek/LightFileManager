@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTextBasic">#ffffff</color>
+    <color name="colorBackgroundBasic">#00007f</color>
+    <color name="colorBackgroundNavigationBottom">#000000</color>
+    <color name="colorBackgroundNavigationButton">#007f7e</color>
+    <color name="colorBackgroundSelectItem">#afafad</color>
+    <color name="colorTabLayout">#007f7e</color>
+    <color name="colorTabLayoutIndicator">#fcff00</color>
+
+</resources>
