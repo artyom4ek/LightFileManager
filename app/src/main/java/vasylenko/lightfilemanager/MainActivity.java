@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button hexButton = (Button) findViewById(R.id.hex_button);
         hexButton.setOnClickListener(this);
 
+        Button moreButton = (Button)findViewById(R.id.more_button);
+        moreButton.setOnClickListener(this);
+
         if (savedInstanceState != null) {
             fragmentOne = (FragmentOne) getSupportFragmentManager().getFragment(
                     savedInstanceState, "fragmentOne");
@@ -177,6 +180,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.hex_button:
                 openHexEditor();
+                break;
+
+            case R.id.more_button:
+                ShowMoreDialog showMoreDialog = new ShowMoreDialog();
+                showMoreDialog.show(getSupportFragmentManager(), "dialog_fragment");
                 break;
 
         }
@@ -397,5 +405,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
     // ------------------------------------------------------------------------------------------ //
+    public static class ShowMoreDialog extends DialogFragment implements View.OnClickListener{
+        private Activity parentActivity;
+        private Button historyChangesButton;
+        private Button settingsButton;
+        private Button aboutButton;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.dialog_show_more, container);
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
+            historyChangesButton = (Button) view.findViewById(R.id.history_changes_button);
+            historyChangesButton.setOnClickListener(this);
+
+            settingsButton = (Button) view.findViewById(R.id.settings_button);
+            settingsButton.setOnClickListener(this);
+
+            aboutButton = (Button) view.findViewById(R.id.about_button);
+            aboutButton.setOnClickListener(this);
+
+            return view;
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            parentActivity = (MainActivity) getActivity();
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.history_changes_button:
+                    openHistoryChanges();
+                    break;
+                case R.id.settings_button:
+                    break;
+                case R.id.about_button:
+                    break;
+            }
+        }
+
+        private void openHistoryChanges(){
+            startActivity(new Intent(parentActivity , HistoryChangesActivity.class));
+        }
+    }
 }

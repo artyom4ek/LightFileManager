@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundBasic"
+    android:gravity="center_horizontal|center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/history_changes_button"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px"
+        android:layout_marginTop="35px"
+        android:background="@color/colorBackgroundNavigationButton"
+        android:elevation="1dp"
+        android:text="History changes" />
+
+    <Button
+        android:id="@+id/settings_button"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px"
+        android:layout_marginTop="5px"
+        android:background="@color/colorBackgroundNavigationButton"
+        android:text="Settings" />
+
+    <Button
+        android:id="@+id/about_button"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35px"
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px"
+        android:layout_marginTop="5px"
+        android:background="@color/colorBackgroundNavigationButton"
+        android:text="About" />
+</LinearLayout>
