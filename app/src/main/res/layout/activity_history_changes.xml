@@ -2,19 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundBasic"
     android:orientation="vertical">
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@color/colorListViewDivider"
+        android:dividerHeight="2px"
+        android:paddingLeft="5px"
+        android:paddingRight="5px"
+        android:paddingTop="5px" />
 
     <Button
         android:id="@+id/clear_history_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:background="@color/colorBackgroundNavigationButton"
         android:text="Clear"
         android:textAllCaps="false"
         android:textSize="18sp" />

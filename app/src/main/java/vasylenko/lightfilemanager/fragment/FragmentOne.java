@@ -1,7 +1,5 @@
 package vasylenko.lightfilemanager.fragment;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -58,8 +56,6 @@ public class FragmentOne extends FragmentBasic implements AdapterView.OnItemLong
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getListView().setDivider(new ColorDrawable(Color.WHITE));
-        getListView().setDividerHeight(2);
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         getListView().setOnItemLongClickListener(this);
         getListView().setOnItemClickListener(this);

@@ -35,4 +35,8 @@ public class HistoryChanges {
         this.operation = operation;
     }
 
+    @Override
+    public String toString() {
+        return this.id +". " + this.date + ": " + this.operation;
+    }
 }

@@ -10,5 +10,6 @@
     <color name="colorBackgroundSelectItem">#afafad</color>
     <color name="colorTabLayout">#007f7e</color>
     <color name="colorTabLayoutIndicator">#fcff00</color>
+    <color name="colorListViewDivider">#ffffff</color>
 
 </resources>
