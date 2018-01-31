@@ -64,5 +64,9 @@ public class DatabaseAdapter {
         return  sqLiteDatabase.insert(DatabaseHelper.TABLE_HISTORY_CHANGES, null, cv);
     }
 
+    public void clearHistoryChanges(){
+        sqLiteDatabase.delete(DatabaseHelper.TABLE_HISTORY_CHANGES, null,null);
+    }
+
 
 }

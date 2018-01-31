@@ -17,7 +17,7 @@
         android:paddingTop="5px" />
 
     <Button
-        android:id="@+id/clear_history_button"
+        android:id="@+id/clear_history_changes_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
