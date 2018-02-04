@@ -23,10 +23,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + TABLE_HISTORY_CHANGES + "(" + COLUMN_ID
                 + " integer primary key," + COLUMN_DATE + " text," + COLUMN_OPERATION + " text" + ")");
-        sqLiteDatabase.execSQL("INSERT INTO "+ TABLE_HISTORY_CHANGES +" (" + COLUMN_DATE
-                + ", " + COLUMN_OPERATION  + ") VALUES ('30.01.2018', 'File was moved to!');");
-        sqLiteDatabase.execSQL("INSERT INTO "+ TABLE_HISTORY_CHANGES +" (" + COLUMN_DATE
-                + ", " + COLUMN_OPERATION  + ") VALUES ('31.01.2018', 'File was delete!');");
     }
 
     @Override

@@ -1,16 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/edit_name"
+    android:id="@+id/create_item_dialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:background="@color/colorBackgroundBasic"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/item_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="@color/colorTextBasic" />
 
     <RadioGroup
         android:id="@+id/create_item_radio_group"
@@ -24,14 +26,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="create Folder" />
+            android:text="create Folder"
+            android:textColor="@color/colorTextBasic"
+            android:textColorLink="@color/colorTabLayoutIndicator" />
 
         <RadioButton
             android:id="@+id/create_item_file_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="create File" />
+            android:text="create File"
+            android:textColor="@color/colorTextBasic" />
 
     </RadioGroup>
 </LinearLayout>

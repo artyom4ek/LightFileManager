@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Date;
 
+import vasylenko.lightfilemanager.adapter.DatabaseAdapter;
 import vasylenko.lightfilemanager.fragment.FragmentBasic;
 import vasylenko.lightfilemanager.fragment.FragmentOne;
 import vasylenko.lightfilemanager.fragment.FragmentTwo;
@@ -178,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ItemsActionDialog itemsActionDialog = new ItemsActionDialog();
                 itemsActionDialog.show(getSupportFragmentManager(), "dialog_fragment");
                 break;
+
             case R.id.hex_button:
                 openHexEditor();
                 break;
@@ -186,7 +190,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ShowMoreDialog showMoreDialog = new ShowMoreDialog();
                 showMoreDialog.show(getSupportFragmentManager(), "dialog_fragment");
                 break;
-
         }
     }
 
@@ -216,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static class ItemsActionDialog extends DialogFragment implements View.OnClickListener,
             CreateItemDialog.CreateItemListener, DeleteItemDialog.DeleteItemListener,
             MoveItemDialog.MoveItemListener, CopyItemDialog.CopyItemListener {
+
+        private DatabaseAdapter databaseAdapter;
         private Activity parentActivity;
         private Button createButton;
         private Button removeButton;
@@ -229,7 +234,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.dialog_items_action, container);
 
-            //getDialog().setTitle("Choose action");
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
             createButton = (Button) view.findViewById(R.id.create_button);
@@ -251,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
             parentActivity = (MainActivity) getActivity();
+            databaseAdapter = new DatabaseAdapter(parentActivity);
         }
 
         @Override
@@ -287,7 +292,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String fragmentOneCurrentDir = PreferenceManager.getDefaultSharedPreferences(parentActivity)
                             .getString("fragmentOneCurrentDir", "/sdcard/");
                     if (fragmentOne.createItem(item, fragmentOneCurrentDir + "/", itemName)) {
-                        Toast.makeText(parentActivity, "Item created in " + fragmentOneCurrentDir + "!", Toast.LENGTH_LONG).show();
+                        // -------------------------------------------------------------------------
+                        String currentState =  "'"+itemName + "' created in " + fragmentOneCurrentDir;
+                        databaseAdapter.insertHistoryChanges(
+                                currentState,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
+                        Toast.makeText(parentActivity, currentState, Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(parentActivity, "Item not created!", Toast.LENGTH_SHORT).show();
                     }
@@ -296,7 +307,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String fragmentTwoCurrentDir = PreferenceManager.getDefaultSharedPreferences(parentActivity)
                             .getString("fragmentTwoCurrentDir", "/sdcard/");
                     if (fragmentTwo.createItem(item, fragmentTwoCurrentDir + "/", itemName)) {
-                        Toast.makeText(parentActivity, "Item created in " + fragmentTwoCurrentDir + "!", Toast.LENGTH_LONG).show();
+                        // -------------------------------------------------------------------------
+                        String currentState =  "'"+itemName + "' created in " + fragmentTwoCurrentDir;
+                        databaseAdapter.insertHistoryChanges(
+                                currentState,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
+                        Toast.makeText(parentActivity, currentState, Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(parentActivity, "Item not created!", Toast.LENGTH_SHORT).show();
                     }
@@ -313,6 +330,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentOne.getSelectedPathCount()>0) {
                     try {
                         fragmentOne.deleteItems();
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentOne.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        String fragmentOneCurrentDir = PreferenceManager.getDefaultSharedPreferences(parentActivity)
+                                .getString("fragmentOneCurrentDir", "/sdcard/");
+                        databaseAdapter.insertHistoryChanges(
+                                "'" + itemNames + "' deleted from "+fragmentOneCurrentDir+"!",
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item deleted SUCCESSFUL !", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item delete ERROR!", Toast.LENGTH_SHORT).show();
@@ -325,6 +354,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentTwo.getSelectedPathCount()>0) {
                     try {
                         fragmentTwo.deleteItems();
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentTwo.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        String fragmentTwoCurrentDir = PreferenceManager.getDefaultSharedPreferences(parentActivity)
+                                .getString("fragmentTwoCurrentDir", "/sdcard/");
+                        databaseAdapter.insertHistoryChanges(
+                                "'" +itemNames+"' deleted from" +fragmentTwoCurrentDir+"!",
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item deleted SUCCESSFUL !", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item delete ERROR!", Toast.LENGTH_SHORT).show();
@@ -348,6 +389,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentOne.getSelectedPathCount()>0){
                     try {
                         fragmentOne.moveItems(fragmentTwoCurrentDir);
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentOne.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        databaseAdapter.insertHistoryChanges(
+                                "'"+itemNames+"' moved to " + fragmentTwoCurrentDir,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item moved SUCCESSFUL !", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item move ERROR!", Toast.LENGTH_SHORT).show();
@@ -360,6 +411,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentTwo.getSelectedPathCount()>0) {
                     try {
                         fragmentTwo.moveItems(fragmentOneCurrentDir);
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentTwo.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        databaseAdapter.insertHistoryChanges(
+                                "'"+itemNames+"' moved to " + fragmentOneCurrentDir,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item moved SUCCESSFUL!", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item move ERROR!", Toast.LENGTH_SHORT).show();
@@ -368,7 +429,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(parentActivity, "You must choose 1 and more items!", Toast.LENGTH_SHORT).show();
                 }
             }
-
         }
 
         @Override
@@ -383,6 +443,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentOne.getSelectedPathCount()>0){
                     try {
                         fragmentOne.copyItems(fragmentTwoCurrentDir);
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentOne.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        databaseAdapter.insertHistoryChanges(
+                                "'"+itemNames+"' copied to " + fragmentTwoCurrentDir,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item copied SUCCESSFUL!", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item copy ERROR!", Toast.LENGTH_SHORT).show();
@@ -395,6 +465,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(fragmentTwo.getSelectedPathCount()>0) {
                     try {
                         fragmentTwo.copyItems(fragmentOneCurrentDir);
+
+                        StringBuilder itemNames = new StringBuilder();
+                        for(String path : fragmentTwo.getSelectedPath())
+                            itemNames.append(path + ", ");
+
+                        // -------------------------------------------------------------------------
+                        databaseAdapter.insertHistoryChanges(
+                                "'"+itemNames+"' moved to " + fragmentOneCurrentDir,
+                                DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date()).toString()
+                        );
                         Toast.makeText(parentActivity, "Item copied SUCCESSFUL!", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Toast.makeText(parentActivity, "Item copy ERROR!", Toast.LENGTH_SHORT).show();

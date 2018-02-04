@@ -45,7 +45,7 @@ public class CreateItemDialog extends DialogFragment implements TextView.OnEdito
 
         createItemListener = (CreateItemListener) getArguments().getSerializable("createItemDialog");
 
-        itemEditText = (EditText) view.findViewById(R.id.username);
+        itemEditText = (EditText) view.findViewById(R.id.item_edit_text);
         createItemRadioGroup = (RadioGroup) view.findViewById(R.id.create_item_radio_group);
 
         itemEditText.setOnEditorActionListener(this);
@@ -53,6 +53,7 @@ public class CreateItemDialog extends DialogFragment implements TextView.OnEdito
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         getDialog().setTitle("Enter item name:");
+        getDialog().getWindow().setBackgroundDrawableResource(R.color.colorBackgroundBasic);
 
         return view;
     }
