@@ -19,7 +19,7 @@
         android:layout_marginTop="35px"
         android:background="@color/colorBackgroundNavigationButton"
         android:elevation="1dp"
-        android:text="Create " />
+        android:text="@string/button_create_item" />
 
     <Button
         android:id="@+id/delete_button"
@@ -29,7 +29,7 @@
         android:layout_marginRight="35px"
         android:layout_marginTop="5px"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="Delete" />
+        android:text="@string/button_delete_item" />
 
     <Button
         android:id="@+id/move_button"
@@ -39,7 +39,7 @@
         android:layout_marginRight="35px"
         android:layout_marginTop="5px"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="Move" />
+        android:text="@string/button_move_item" />
 
     <Button
         android:id="@+id/copy_button"
@@ -50,6 +50,6 @@
         android:layout_marginRight="35px"
         android:layout_marginTop="5px"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="Copy" />
+        android:text="@string/button_copy_item" />
 
 </LinearLayout>

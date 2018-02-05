@@ -15,7 +15,7 @@
         android:layout_marginTop="35px"
         android:background="@color/colorBackgroundNavigationButton"
         android:elevation="1dp"
-        android:text="History changes" />
+        android:text="@string/button_history_changes" />
 
     <Button
         android:id="@+id/settings_button"
@@ -25,7 +25,7 @@
         android:layout_marginRight="35px"
         android:layout_marginTop="5px"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="Settings" />
+        android:text="@string/button_settings" />
 
     <Button
         android:id="@+id/about_button"
@@ -36,5 +36,5 @@
         android:layout_marginRight="35px"
         android:layout_marginTop="5px"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="About" />
+        android:text="@string/button_about" />
 </LinearLayout>

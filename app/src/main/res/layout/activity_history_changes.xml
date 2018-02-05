@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:background="@color/colorBackgroundNavigationButton"
-        android:text="Clear"
+        android:text="@string/button_clear_history_changes"
         android:textAllCaps="false"
         android:textSize="18sp" />
 </LinearLayout>

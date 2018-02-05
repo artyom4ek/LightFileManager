@@ -88,7 +88,7 @@
             android:layout_margin="5px"
             android:layout_weight="1"
             android:background="@color/colorBackgroundNavigationButton"
-            android:text="Action"
+            android:text="@string/button_action"
             android:textAllCaps="false"
             android:textSize="11sp" />
 
@@ -99,7 +99,7 @@
             android:layout_margin="5px"
             android:layout_weight="1"
             android:background="@color/colorBackgroundNavigationButton"
-            android:text="Hex editor"
+            android:text="@string/button_hex"
             android:textAllCaps="false"
             android:textSize="11sp" />
 
@@ -110,7 +110,7 @@
             android:layout_margin="5px"
             android:layout_weight="1"
             android:background="@color/colorBackgroundNavigationButton"
-            android:text="Search"
+            android:text="@string/button_search"
             android:textAllCaps="false"
             android:textSize="11sp" />
 
@@ -121,7 +121,7 @@
             android:layout_margin="5px"
             android:layout_weight="1"
             android:background="@color/colorBackgroundNavigationButton"
-            android:text="Tree"
+            android:text="@string/button_tree"
             android:textAllCaps="false"
             android:textSize="11sp" />
 
@@ -132,7 +132,7 @@
             android:layout_margin="5px"
             android:layout_weight="1"
             android:background="@color/colorBackgroundNavigationButton"
-            android:text="More"
+            android:text="@string/button_more"
             android:textAllCaps="false"
             android:textSize="11sp" />
 
