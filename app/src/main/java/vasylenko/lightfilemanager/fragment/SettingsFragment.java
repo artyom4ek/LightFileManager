@@ -18,7 +18,11 @@ public class SettingsFragment extends PreferenceFragment {
         listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-
+                // For test.
+                /*Log.e("locale", "before: "+ Locale.getDefault().getDisplayLanguage() );
+                LocaleManager.changeLocale(getResources(), "ru");
+                Log.e("locale", "after: "+Locale.getDefault().getDisplayLanguage() );
+                recreate();*/
                 return true;
             }
         });

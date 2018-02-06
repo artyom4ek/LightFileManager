@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_action">Действия</string>
+    <string name="button_hex">Hex</string>
+    <string name="button_search">Поиск</string>
+    <string name="button_tree">Дерево</string>
+    <string name="button_more">Больше</string>
+</resources>

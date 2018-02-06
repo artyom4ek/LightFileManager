@@ -31,6 +31,7 @@ import vasylenko.lightfilemanager.fragment.dialog.CopyItemDialog;
 import vasylenko.lightfilemanager.fragment.dialog.CreateItemDialog;
 import vasylenko.lightfilemanager.fragment.dialog.DeleteItemDialog;
 import vasylenko.lightfilemanager.fragment.dialog.MoveItemDialog;
+import vasylenko.lightfilemanager.local.LocaleManager;
 import vasylenko.lightfilemanager.worker.StyleWorker;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // For test Locale.
+        LocaleManager.changeLocale(getResources(), "en");
         setContentView(R.layout.activity_main);
 
         Button actionButton = (Button) findViewById(R.id.action_button);
@@ -52,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button hexButton = (Button) findViewById(R.id.hex_button);
         hexButton.setOnClickListener(this);
+
+        Button treeButton = (Button) findViewById(R.id.tree_button);
+        treeButton.setOnClickListener(this);
 
         Button moreButton = (Button)findViewById(R.id.more_button);
         moreButton.setOnClickListener(this);
@@ -82,18 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setUpPortraitLayout();
         else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             setUpLandscapeLayout();
-    }
-
-    private void saveGlobalState() {
-        //Log.e("test", "DESTROY: "+tabLayout.getSelectedTabPosition());
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putInt("tabSelectedIndex", tabLayout.getSelectedTabPosition())
-                .apply();
-       /* globalStatePreference.edit()
-                .putInt("tabSelectedIndex", tabLayout.getSelectedTabPosition())
-                .apply();*/
-
     }
 
     // ------------------------------------------------------------------------------------------ //
@@ -184,6 +178,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.hex_button:
                 openHexEditor();
+                break;
+
+            case R.id.tree_button:
+
                 break;
 
             case R.id.more_button:
@@ -524,6 +522,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     openHistoryChanges();
                     break;
                 case R.id.settings_button:
+                    openSettings();
                     break;
                 case R.id.about_button:
                     break;
@@ -532,6 +531,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         private void openHistoryChanges(){
             startActivity(new Intent(parentActivity , HistoryChangesActivity.class));
+        }
+
+            private void openSettings(){
+            startActivity(new Intent(parentActivity , SettingsActivity.class));
         }
     }
 }
