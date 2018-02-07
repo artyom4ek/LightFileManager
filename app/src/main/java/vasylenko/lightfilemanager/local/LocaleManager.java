@@ -17,13 +17,13 @@ public class LocaleManager {
             case "ru":
                 locale = new Locale(localeName);
                 Locale.setDefault(locale);
-                config.locale = new Locale(localeName);
+                config.locale = locale;
                 break;
 
             default:
                 locale = new Locale(localeName);
                 Locale.setDefault(locale);
-                config.locale = new Locale(localeName);
+                config.locale = locale;
                 break;
         }
         res.updateConfiguration(config, res.getDisplayMetrics());

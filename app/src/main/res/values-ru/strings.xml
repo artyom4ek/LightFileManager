@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Light File Manager</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
     <string name="button_action">Действия</string>
     <string name="button_hex">Hex</string>
     <string name="button_search">Поиск</string>
     <string name="button_tree">Дерево</string>
     <string name="button_more">Больше</string>
+
+    <string name="button_create_item">Создать</string>
+    <string name="button_delete_item">Удалить</string>
+    <string name="button_move_item">Переместить</string>
+    <string name="button_copy_item">Копировать</string>
+
+    <string name="button_history_changes">История изменений</string>
+    <string name="button_settings">Настройки</string>
+    <string name="button_about">О программе</string>
+
+    <string name="button_clear_history_changes">Очистить</string>
+
+    <string name="language_title">Язык</string>
+    <string name="default_language">en</string>
+    <string-array name="languages_list_entry">
+        <item>English</item>
+        <item>Russian</item>
+    </string-array>
+    <string-array name="languages_list_value">
+        <item>en</item>
+        <item>ru</item>
+    </string-array>
 </resources>

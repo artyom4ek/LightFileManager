@@ -46,8 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // For test Locale.
-        LocaleManager.changeLocale(getResources(), "en");
+
+        String currentAppLanguage = PreferenceManager.getDefaultSharedPreferences(this).getString("pref_key_languages_list",
+                getResources().getString(R.string.default_language));
+        LocaleManager.changeLocale(getResources(), currentAppLanguage);
         setContentView(R.layout.activity_main);
 
         Button actionButton = (Button) findViewById(R.id.action_button);
@@ -533,7 +535,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(parentActivity , HistoryChangesActivity.class));
         }
 
-            private void openSettings(){
+        private void openSettings(){
             startActivity(new Intent(parentActivity , SettingsActivity.class));
         }
     }
